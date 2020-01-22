@@ -1,0 +1,55 @@
+<!doctype html>
+<head>
+
+<title> Learning Jquery</title>
+<script src="js/jquery.min.js"></script>
+
+</head>
+
+
+<body>
+	<p id="result">hello</p>
+	
+	<img src="img/car.jpg" class="image" height="150" width="150"><Br>
+	<img src="img/car.jpg" class="image" height="150" width="150"><br>
+	<img src="img/car.jpg" class="image" height="150" width="150"><br>
+	<img src="img/car.jpg" class="image" height="150" width="150"><br>
+	<img src="img/car.jpg" class="image" height="150" width="150"><br>
+</body>
+<script>
+	$(document).ready(function(){
+		//$("#car").hide(2000);
+		//$("#car").show(2000);
+		
+		//$("#car").click(function () {
+		//	$("#car").css({
+			//	height:"500",
+				//width:"500",
+				//"background-color" : "",
+				//backgroundColor: "",
+			//});
+		//})
+		
+		//$("#car").mouseover(function(){
+		//	alert("on mouse over")
+		//})
+		
+		
+		
+		$(".image").click(function(){
+			
+			$(this).css({
+				height:"500",
+				width:"500",
+			})
+			
+			$(this).hide(2000)
+			$(this).show(1000)
+			
+			
+		});
+	});
+</script>
+
+
+</html>
