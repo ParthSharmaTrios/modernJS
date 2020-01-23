@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Axios / Ajax Calls </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  
+ 
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+  
+  
+  
+</head>
+<body>
+
+<div class="container">
+  
+  <h1> List of users from JSON Placeholder's API </h1>
+  
+  <div id="content">
+		<table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>UserName</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody id="results">
+      
+     
+    </tbody>
+  </table>
+  </div>
+  
+  
+</div>
+
+</body>
+
+
+
+<script>
+
+	$(document).ready(function () {
+		
+		
+		var users= []
+		
+		axios.get('https://jsonplaceholder.typicode.com/users').then(function(response){
+		
+			users = response.data
+			
+			var html = ""
+			
+			for(var i = 0 ; i < users.length ; i++){
+			
+					//html += "<h3>"+ users[i].name +" </h3>"
+					
+					html += `<tr>
+								<td>${users[i].name}</td>
+								<td>${users[i].username}</td>
+								<td>${users[i].email}</td>
+							</tr>`
+							
+			//html += "<tr><td>"+ users[i].name+"</td><td>"+users[i].username+"</td><td>"+users[i].email+"</td></tr>"
+			
+			}
+			
+			$("#results").append(html)
+		
+		})
+		
+	});
+
+
+</script>
+
+
+
+
+
+
+</html>
