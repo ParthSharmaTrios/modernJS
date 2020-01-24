@@ -146,7 +146,7 @@
 			
 					
 					
-					html += `<li onclick="populate(${i})">
+					html += `<li onclick="populate(${users[i].id})">
 								${users[i].name}
 							</li>`
 							
@@ -164,22 +164,34 @@
 	});
 	
 	
-	function populate(index){
+	function populate(id){
+		
+			var user_details = ''
+			
+			
+			axios.get("https://jsonplaceholder.typicode.com/users/"+id+"").then(function(response){
+			
+			
+				user_details = response.data
+				
+				$("#name").text(user_details.name)
+				$("#user_name").text(user_details.username)
+				$("#email").text(user_details.email)
+				$("#phone").text(user_details.phone)
+				$("#apt").text(user_details.address.suite)
+				$("#street").text(user_details.address.street)
+				$("#city").text(user_details.address.city)
+				$("#zip").text(user_details.address.zip)
+				
+				var web = `<a href="http://${user_details.website}" target=_blank>${user_details.website}</a>`
+						
+				$("#website").html(web)
+			
+			})
 		
 			
 		
-			$("#name").text(users[index].name)
-			$("#user_name").text(users[index].username)
-			$("#email").text(users[index].email)
-			$("#phone").text(users[index].phone)
-			$("#apt").text(users[index].address.suite)
-			$("#street").text(users[index].address.street)
-			$("#city").text(users[index].address.city)
-			$("#zip").text(users[index].address.zip)
 			
-			var web = `<a href="http://${users[index].website}" target=_blank>${users[index].website}</a>`
-					
-			$("#website").html(web)
 		
 	}
 
