@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Axios / Ajax Calls </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  
+ 
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+  <style>
+	.light_bg{
+		background-color:#f2f2f2;
+		
+	}
+  </style>
+  
+  
+</head>
+<body>
+
+<div class="container">
+  
+  <h1> List of users from JSON Placeholder's API </h1>
+  
+  <br><br>
+  
+  <div id="content">
+	
+	
+	<div class="row">
+		
+		<div class="col-lg-4">
+			<ul id="users">
+			
+			
+			</ul>
+		</div>
+		
+		
+		<div class="col-lg-8 light_bg" >
+			<div id="user_details">
+			
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<div class="card">
+								<div class="card-body">
+									<div class="row">
+										<div class="col-12 col-lg-8 col-md-6">
+											<h3 class="mb-0 text-truncated" id="name">Mike Anamendolla</h3>
+											<p class="lead"><span id="user_name"> </span>, <span id="email"> </span></p>
+											<p class="lead2"><span id="phone"> </span></p>
+											
+											<h4>Address</h4>
+											<p>
+												<span id="apt"> </span>,<span id="street"> </span> <br> 
+												<span id="city"> </span>,<span id="zip"> </span> <br> 
+											</p>
+											
+										</div>
+										<div class="col-12 col-lg-4 col-md-6 text-center">
+											<img src="https://robohash.org/68.186.255.198.png" alt="" class="mx-auto rounded-circle img-fluid">
+											<br>
+											<ul class="list-inline ratings text-center" title="Ratings">
+												<li class="list-inline-item"><a href="#"><span class="fa fa-star"></span></a>
+												</li>
+												<li class="list-inline-item"><a href="#"><span class="fa fa-star"></span></a>
+												</li>
+												<li class="list-inline-item"><a href="#"><span class="fa fa-star"></span></a>
+												</li>
+												<li class="list-inline-item"><a href="#"><span class="fa fa-star"></span></a>
+												</li>
+												<li class="list-inline-item"><a href="#"><span class="fa fa-star"></span></a>
+												</li>
+											</ul>
+										</div>
+										<div class="col-12 col-lg-4">
+											<h3 class="mb-0">20.7K</h3>
+											<small>Followers</small>
+											<button class="btn btn-block btn-outline-success"><span class="fa fa-plus-circle"></span> Follow</button>
+										</div>
+										<div class="col-12 col-lg-4">
+											<h3 class="mb-0">245</h3>
+											<small>Following</small>
+											<button class="btn btn-outline-info btn-block"><span class="fa fa-user"></span> View Profile</button>
+										</div>
+										<div class="col-12 col-lg-4">
+											<h3 class="mb-0">43</h3>
+											<small>Snippets</small>
+											<button type="button" class="btn btn-outline-primary btn-block"><span class="fa fa-gear"></span> Options</button>
+										</div>
+										<!--/col-->
+									</div>
+									<!--/row-->
+								</div>
+								<!--/card-block-->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+		
+	</div>
+  
+  
+  
+  
+  
+  
+  </div>
+  
+  
+</div>
+
+</body>
+
+
+
+<script>
+
+	var users= []
+		
+
+	$(document).ready(function () {
+		
+		
+		
+		
+		axios.get('https://jsonplaceholder.typicode.com/users').then(function(response){
+		
+			users = response.data
+			
+			var html = ""
+			
+			for(var i = 0 ; i < users.length ; i++){
+			
+					
+					
+					html += `<li onclick="populate(${i})">
+								${users[i].name}
+							</li>`
+							
+			
+			
+			}
+			
+			$("#users").append(html)
+		
+		})
+		
+		
+		
+		
+	});
+	
+	
+	function populate(index){
+		
+			
+		
+			$("#name").text(users[index].name)
+			$("#user_name").text(users[index].username)
+			$("#email").text(users[index].email)
+			$("#phone").text(users[index].phone)
+			$("#apt").text(users[index].address.suite)
+			$("#street").text(users[index].address.street)
+			$("#city").text(users[index].address.city)
+			$("#zip").text(users[index].address.zip)
+		
+	}
+
+
+</script>
+
+
+
+
+
+
+</html>
